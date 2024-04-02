@@ -1,0 +1,23 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# IntelliJ-specific files
+.idea/
+
+# Gradle-specific
+build/
+.gradle/
+
+# Eclipse-specific
+.classpath
+.project
+.settings/
+
+# macOS-specific
+.DS_Store
+
+# Windows-specific
+Thumbs.db
