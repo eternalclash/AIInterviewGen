@@ -13,7 +13,4 @@ public class Member {
     private long id;
     private String name;
     private String password;
-    private String phonenum;
-    private String pattern;
-    private String deviceId;
 }
