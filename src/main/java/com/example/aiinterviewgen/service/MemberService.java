@@ -1,6 +1,7 @@
 package com.example.aiinterviewgen.service;
 
 import com.example.aiinterviewgen.domain.Member;
+import com.example.aiinterviewgen.domain.MemberDto;
 import com.example.aiinterviewgen.domain.MemberException;
 import com.example.aiinterviewgen.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,13 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void join(Member member) {
-        validateDuplicateMember(member.getName());
+    public Long join(MemberDto memberDto) {
+        validateDuplicateMember(memberDto.getName());
+        Member member = new Member();
+        member.setName(memberDto.getName());
+        member.setPassword(memberDto.getPassword());
         memberRepository.save(member);
+        return member.getId();
     }
 
     private void validateDuplicateMember(String memberName) {

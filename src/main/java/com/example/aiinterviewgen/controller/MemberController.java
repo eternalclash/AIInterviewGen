@@ -5,6 +5,7 @@ import com.example.aiinterviewgen.domain.MemberDto;
 import com.example.aiinterviewgen.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +16,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public String create(@Valid @RequestBody MemberDto memberDto) {
-        Member member = new Member();
-        member.setName(memberDto.getName());
-        member.setPassword(memberDto.getPassword());
-        memberService.join(member);
-        return "redirect:/";
+    public ResponseEntity<Long> create(@Valid @RequestBody MemberDto memberDto) {
+        return ResponseEntity.ok(memberService.join(memberDto));
     }
 }
