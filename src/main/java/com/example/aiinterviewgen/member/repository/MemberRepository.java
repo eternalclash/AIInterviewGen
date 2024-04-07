@@ -1,6 +1,6 @@
-package com.example.aiinterviewgen.repository;
+package com.example.aiinterviewgen.member.repository;
 
-import com.example.aiinterviewgen.domain.Member;
+import com.example.aiinterviewgen.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

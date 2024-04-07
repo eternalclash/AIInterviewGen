@@ -1,9 +1,9 @@
-package com.example.aiinterviewgen.service;
+package com.example.aiinterviewgen.member.service;
 
-import com.example.aiinterviewgen.domain.Member;
-import com.example.aiinterviewgen.domain.MemberDto;
-import com.example.aiinterviewgen.domain.MemberException;
-import com.example.aiinterviewgen.repository.MemberRepository;
+import com.example.aiinterviewgen.member.domain.Member;
+import com.example.aiinterviewgen.member.domain.MemberDto;
+import com.example.aiinterviewgen.member.domain.MemberException;
+import com.example.aiinterviewgen.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

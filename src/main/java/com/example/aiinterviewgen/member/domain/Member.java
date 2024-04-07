@@ -1,4 +1,4 @@
-package com.example.aiinterviewgen.domain;
+package com.example.aiinterviewgen.member.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

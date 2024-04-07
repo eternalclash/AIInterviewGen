@@ -1,8 +1,7 @@
-package com.example.aiinterviewgen.controller;
+package com.example.aiinterviewgen.member.controller;
 
-import com.example.aiinterviewgen.domain.Member;
-import com.example.aiinterviewgen.domain.MemberDto;
-import com.example.aiinterviewgen.service.MemberService;
+import com.example.aiinterviewgen.member.domain.MemberDto;
+import com.example.aiinterviewgen.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

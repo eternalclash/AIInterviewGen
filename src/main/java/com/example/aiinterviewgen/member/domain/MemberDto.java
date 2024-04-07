@@ -1,4 +1,4 @@
-package com.example.aiinterviewgen.domain;
+package com.example.aiinterviewgen.member.domain;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

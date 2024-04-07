@@ -1,4 +1,4 @@
-package com.example.aiinterviewgen.domain;
+package com.example.aiinterviewgen.member.domain;
 
 public class MemberException extends RuntimeException {
     public MemberException() {
