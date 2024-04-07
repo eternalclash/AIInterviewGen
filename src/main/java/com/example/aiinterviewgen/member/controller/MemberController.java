@@ -23,9 +23,9 @@ public class MemberController {
     }
 
     @PostMapping("/signin/password")
-    public JwtInfo singIn(@Valid @RequestBody MemberDto memberDto) {
+    public ResponseEntity<JwtInfo> singIn(@Valid @RequestBody MemberDto memberDto) {
         String memberName = memberDto.getName();
         String password = memberDto.getPassword();
-        return memberService.login(memberName, password);
+        return ResponseEntity.ok(memberService.login(memberName, password));
     }
 }
