@@ -1,11 +1,11 @@
 package com.example.aiinterviewgen.member.controller;
 
 import com.example.aiinterviewgen.member.domain.MemberDto;
+import com.example.aiinterviewgen.member.security.JwtInfo;
 import com.example.aiinterviewgen.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +20,12 @@ public class MemberController {
     @PostMapping("/signup")
     public ResponseEntity<Long> signUp(@Valid @RequestBody MemberDto memberDto) {
         return ResponseEntity.ok(memberService.join(memberDto));
+    }
+
+    @PostMapping("/signin/password")
+    public JwtInfo singIn(@Valid @RequestBody MemberDto memberDto) {
+        String memberName = memberDto.getName();
+        String password = memberDto.getPassword();
+        return memberService.login(memberName, password);
     }
 }
