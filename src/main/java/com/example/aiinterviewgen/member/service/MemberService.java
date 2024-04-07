@@ -2,7 +2,7 @@ package com.example.aiinterviewgen.member.service;
 
 import com.example.aiinterviewgen.member.domain.Member;
 import com.example.aiinterviewgen.member.domain.MemberDto;
-import com.example.aiinterviewgen.member.domain.MemberException;
+import com.example.aiinterviewgen.member.exception.MemberException;
 import com.example.aiinterviewgen.member.repository.MemberRepository;
 import com.example.aiinterviewgen.member.security.JwtInfo;
 import com.example.aiinterviewgen.member.security.JwtProvider;
@@ -28,16 +28,20 @@ public class MemberService {
 
     @Transactional
     public JwtInfo login(String memberName, String password) {
-        // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
-        // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberName, password);
+        try {
+            // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
+            // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberName, password);
 
-        // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
-        // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
+            // 2. 실제 검증 (사용자 비밀번호 체크)이 이루어지는 부분
+            // authenticate 매서드가 실행될 때 CustomUserDetailsService 에서 만든 loadUserByUsername 메서드가 실행
+            Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        // 3. 인증 정보를 기반으로 JWT 토큰 생성
-        return jwtProvider.generateToken(authentication);
+            // 3. 인증 정보를 기반으로 JWT 토큰 생성
+            return jwtProvider.generateToken(authentication);
+        } catch (Exception e) {
+            throw new MemberException(401, "ID 또는 비밀번호가 일치하지 않습니다. ");
+        }
     }
 
     public Long join(MemberDto memberDto) {
@@ -53,7 +57,7 @@ public class MemberService {
     private void validateDuplicateMember(String memberName) {
         Optional<Member> findMember = memberRepository.findAllByName(memberName);
         if (findMember.isPresent()) {
-            throw new MemberException("이미 존재하는 ID입니다.");
+            throw new MemberException(401, "이미 존재하는 ID입니다.");
         }
     }
 }
