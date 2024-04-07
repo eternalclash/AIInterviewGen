@@ -18,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Long> create(@Valid @RequestBody MemberDto memberDto) {
+    public ResponseEntity<Long> signUp(@Valid @RequestBody MemberDto memberDto) {
         return ResponseEntity.ok(memberService.join(memberDto));
     }
 }
