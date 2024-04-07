@@ -21,3 +21,6 @@ build/
 
 # Windows-specific
 Thumbs.db
+
+#.gitignore
+application-aws.properties
