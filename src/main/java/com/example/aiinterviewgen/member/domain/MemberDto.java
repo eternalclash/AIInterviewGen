@@ -3,10 +3,8 @@ package com.example.aiinterviewgen.member.domain;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class MemberDto {
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z0-9]{8,16}$", message = "이름은 8글자~16글자의 영문자 + 숫자 조합이어야 합니다.")
