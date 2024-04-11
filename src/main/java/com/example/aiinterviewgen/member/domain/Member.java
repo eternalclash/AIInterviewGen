@@ -63,4 +63,20 @@ public class Member implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 }
