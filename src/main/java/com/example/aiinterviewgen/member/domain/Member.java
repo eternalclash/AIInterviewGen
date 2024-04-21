@@ -3,7 +3,6 @@ package com.example.aiinterviewgen.member.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -62,5 +61,10 @@ public class Member implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public void updateInfo(MemberDto memberDto) {
+        this.name = memberDto.getName();
+        this.password = memberDto.getPassword();
     }
 }
