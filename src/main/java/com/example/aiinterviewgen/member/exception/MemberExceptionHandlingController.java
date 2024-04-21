@@ -16,7 +16,6 @@ public class MemberExceptionHandlingController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleCustomException(MethodArgumentNotValidException ex) {
-        // TODO: 예외가 여러 개라면 어떻게 출력해야 할 지 고민해보기
         ErrorResponse errorResponse = new ErrorResponse(401, ex.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         return ResponseEntity.status(401).body(errorResponse);
     }
