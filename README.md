@@ -1,8 +1,4 @@
-# 개발자를 위한 AI 북마크 비서 - Devook
-
-<p align="center">
-  <img src="https://images.velog.io/images/gywlsp/post/d6bb16ec-1e4c-4736-bb49-94acb0b545d5/Devook.png" style = "margin: 15px; width: 720px"/>
-</p>
+# 주니어 개발자를 위한 면접 생성기
 
 <br/>
 
