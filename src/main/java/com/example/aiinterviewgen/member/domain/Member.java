@@ -1,5 +1,6 @@
 package com.example.aiinterviewgen.member.domain;
 
+import com.example.aiinterviewgen.interview.domain.Interview;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class Member implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, unique = true, nullable = false)
+    @Column(name = "member_id", updatable = false, unique = true, nullable = false)
     private Long id;
 
     @Column(nullable = false)
@@ -27,7 +28,7 @@ public class Member implements UserDetails {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "member_roles")
+    @CollectionTable(name = "member_roles", joinColumns = @JoinColumn(name = "member_id"))
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
@@ -37,6 +38,9 @@ public class Member implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.MERGE, orphanRemoval = true)
+    private List<Interview> board = new ArrayList<>();
 
     @Override
     public String getUsername() {
@@ -66,5 +70,9 @@ public class Member implements UserDetails {
     public void updateInfo(MemberDto memberDto) {
         this.name = memberDto.getName();
         this.password = memberDto.getPassword();
+    }
+
+    public void setDefault() {
+        this.roles = List.of("USER");
     }
 }
