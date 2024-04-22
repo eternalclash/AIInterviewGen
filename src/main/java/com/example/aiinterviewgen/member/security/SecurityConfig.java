@@ -22,6 +22,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.cors();
         http
                 .httpBasic(HttpBasicConfigurer::disable)
                 .csrf(CsrfConfigurer::disable)
@@ -29,7 +30,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers(
-                                        "/api/v1/members/signin/password", "/api/v1/members/signup", "/api/v1/interviews/**"
+                                       "/api/v1/interviews/**", "/v3/api-docs/**" ,
+                                        "/swagger-ui/**", "/api/v1/members/signin/password", "/api/v1/members/signup"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )

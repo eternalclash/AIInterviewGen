@@ -74,5 +74,6 @@ public class Member implements UserDetails {
 
     public void setDefault() {
         this.roles = List.of("USER");
+
     }
 }
