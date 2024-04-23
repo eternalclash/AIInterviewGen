@@ -3,10 +3,10 @@ package com.example.aiinterviewgen.member.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +30,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers(
- "/v3/api-docs/**" ,                   "/swagger-ui/**", "/api/v1/members/signin/password", "/api/v1/members/signup"
+                                       "/api/v1/interviews/**", "/v3/api-docs/**" ,
+                                        "/swagger-ui/**", "/api/v1/members/signin/password", "/api/v1/members/signup"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )

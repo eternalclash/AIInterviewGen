@@ -1,9 +1,9 @@
 package com.example.aiinterviewgen.member.domain;
 
+import com.example.aiinterviewgen.interview.domain.Interview;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class Member implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, unique = true, nullable = false)
+    @Column(name = "member_id", updatable = false, unique = true, nullable = false)
     private Long id;
 
     @Column(nullable = false)
@@ -28,7 +28,7 @@ public class Member implements UserDetails {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "member_roles")
+    @CollectionTable(name = "member_roles", joinColumns = @JoinColumn(name = "member_id"))
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
@@ -38,6 +38,9 @@ public class Member implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.MERGE, orphanRemoval = true)
+    private List<Interview> board = new ArrayList<>();
 
     @Override
     public String getUsername() {
@@ -64,19 +67,13 @@ public class Member implements UserDetails {
         return false;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void updateInfo(MemberDto memberDto) {
+        this.name = memberDto.getName();
+        this.password = memberDto.getPassword();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setDefault() {
+        this.roles = List.of("USER");
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
     }
 }

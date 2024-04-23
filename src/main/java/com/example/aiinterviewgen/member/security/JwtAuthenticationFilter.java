@@ -30,6 +30,20 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+//        else {
+//            // accessToken 만료 시 refreshToken 검증 및 새로운 accessToken 발급 로직
+//            String refreshToken = ((HttpServletRequest) request).getHeader("Refresh-Token");
+//            if (refreshToken != null && jwtTokenProvider.validateRefreshToken(refreshToken)) {
+//                String newAccessToken = jwtTokenProvider.createAccessToken(/* refreshToken 또는 사용자 정보로부터 subject 추출 */);
+//
+//                // 새로운 accessToken으로 Authentication 객체 생성 및 SecurityContext에 저장
+//                Authentication newAuthentication = jwtTokenProvider.getAuthentication(newAccessToken);
+//                SecurityContextHolder.getContext().setAuthentication(newAuthentication);
+//
+//                // 응답 헤더에 새로운 accessToken 추가
+//                ((HttpServletResponse) response).setHeader("Authorization", "Bearer " + newAccessToken);
+//            }
+//        }
         chain.doFilter(request, response);
     }
 

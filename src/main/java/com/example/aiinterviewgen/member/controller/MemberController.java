@@ -24,6 +24,10 @@ public class MemberController {
     public ResponseEntity<JwtInfo> singIn(@Valid @RequestBody MemberDto memberDto) {
         String memberName = memberDto.getName();
         String password = memberDto.getPassword();
-        return ResponseEntity.ok(memberService.login(memberName, password));
+        JwtInfo jwtInfo = memberService.login(memberName, password);
+
+        return ResponseEntity.ok()
+                .header("Authorization", "Bearer " + jwtInfo.getAccessToken())
+                .body(jwtInfo);
     }
 }
