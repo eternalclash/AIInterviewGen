@@ -6,6 +6,7 @@ import com.example.aiinterviewgen.interview.domain.InterviewUpdateDto;
 import com.example.aiinterviewgen.interview.exception.InterviewException;
 import com.example.aiinterviewgen.interview.service.InterviewService;
 import com.example.aiinterviewgen.member.security.JwtProvider;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Objects;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/interviews")
+@SecurityRequirement(name = "Bearer Authentication")
 public class InterviewController {
 
     private final InterviewService interviewService;

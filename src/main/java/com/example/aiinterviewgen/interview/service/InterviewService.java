@@ -8,6 +8,7 @@ import com.example.aiinterviewgen.interview.repository.InterviewRepository;
 import com.example.aiinterviewgen.member.domain.Member;
 import com.example.aiinterviewgen.member.exception.MemberException;
 import com.example.aiinterviewgen.member.repository.MemberRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
