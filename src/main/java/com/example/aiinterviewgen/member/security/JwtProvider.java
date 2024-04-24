@@ -53,7 +53,7 @@ public class JwtProvider {
                 .setExpiration(new Date(now + 86400000))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
-        System.out.println("accessToken"+accessToken);
+
 
 
         return JwtInfo.builder()
