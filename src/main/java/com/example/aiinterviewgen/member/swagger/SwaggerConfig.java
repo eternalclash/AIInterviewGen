@@ -12,12 +12,12 @@ import org.springframework.http.HttpHeaders;
 
 @Configuration
 
-@io.swagger.v3.oas.annotations.security.SecurityScheme(
-        name = "Bearer Authentication",
-        type = SecuritySchemeType.HTTP,
-        bearerFormat = "JWT",
-        scheme = "bearer"
-)
+//@io.swagger.v3.oas.annotations.security.SecurityScheme(
+//        name = "Bearer Authentication",
+//        type = SecuritySchemeType.HTTP,
+//        bearerFormat = "JWT",
+//        scheme = "bearer"
+//)
 public class SwaggerConfig {
 
 }

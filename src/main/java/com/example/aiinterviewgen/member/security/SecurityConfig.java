@@ -22,6 +22,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println("security");
         http.cors();
         http
                 .httpBasic(HttpBasicConfigurer::disable)
