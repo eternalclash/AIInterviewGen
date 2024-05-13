@@ -24,3 +24,4 @@ Thumbs.db
 
 #.gitignore
 application-aws.properties
+application-openai.properties
