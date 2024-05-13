@@ -31,7 +31,8 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers(
                                        "/api/v1/interviews/**", "/v3/api-docs/**" ,
-                                        "/swagger-ui/**", "/api/v1/members/signin/password", "/api/v1/members/signup"
+                                        "/swagger-ui/**", "/api/v1/members/signin/password", "/api/v1/members/signup",
+                                        "/openai/completion"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
